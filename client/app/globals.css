@@ -2,13 +2,38 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --bg-secondary: #f5f5f5;
-  --card: #ffffff;
-  --border: #e5e5e5;
-  --text-dim: #737373;
-  --primary: #3b82f6;
-  --text: #171717;
+  --foreground: #1a1a1a;
+  --foreground-secondary: #4a4a4a;
+  --foreground-muted: #6b6b6b;
+  --foreground-border: #e0e0e0;
+  --accent: #3b82f6;
+  --accent-green: #10b981;
+  --nav-accent: #00ff88;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --foreground-secondary: #d0d0d0;
+  --foreground-muted: #b0b0b0;
+  --foreground-border: #333333;
+  --accent: #00ffff;
+  --accent-green: #00ff88;
+  --nav-accent: #00ff88;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @theme inline {
@@ -18,211 +43,321 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --bg-secondary: #1a1a1a;
-    --card: #171717;
-    --border: #262626;
-    --text-dim: #a3a3a3;
-    --primary: #3b82f6;
-    --text: #ededed;
-  }
+/* Custom Scrollbar - Webkit browsers */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Markdown Prose Styles */
-.prose {
-  color: var(--text);
-}
-
-.prose h1,
-.prose h2,
-.prose h3,
-.prose h4,
-.prose h5,
-.prose h6 {
-  color: var(--text);
-  font-weight: 600;
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
-}
-
-.prose h1 {
-  font-size: 2.25em;
-}
-
-.prose h2 {
-  font-size: 1.875em;
-}
-
-.prose h3 {
-  font-size: 1.5em;
-}
-
-.prose p {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  line-height: 1.75;
-}
-
-.prose strong {
-  color: var(--text);
-  font-weight: 600;
-}
-
-.prose code {
-  background: var(--bg-secondary);
-  padding: 0.125em 0.375em;
-  border-radius: 0.25rem;
-  font-size: 0.875em;
-  color: var(--text);
-}
-
-.prose pre {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  padding: 1em;
-  overflow-x: auto;
-  margin: 1.5em 0;
-}
-
-.prose pre code {
+::-webkit-scrollbar-track {
   background: transparent;
-  padding: 0;
 }
 
-.prose blockquote {
-  border-left: 4px solid var(--primary);
-  padding-left: 1em;
-  margin: 1.5em 0;
-  color: var(--text-dim);
-  font-style: italic;
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
-.prose a {
-  color: var(--primary);
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
+  background-clip: padding-box;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  background-clip: padding-box;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+  background-clip: padding-box;
+}
+
+/* Custom Scrollbar - Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.dark * {
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+/* Tiptap Editor styles */
+.ProseMirror {
+  outline: none;
+  color: var(--foreground);
+  font-family: var(--font-geist-sans);
+}
+
+.ProseMirror p {
+  margin: 0.75rem 0;
+  line-height: 1.8;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--foreground-muted);
+  pointer-events: none;
+  height: 0;
+}
+
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3 {
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+  color: var(--foreground);
+}
+
+.ProseMirror h1 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5rem;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25rem;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+.ProseMirror ul li,
+.ProseMirror ol li {
+  margin: 0.5rem 0;
+  line-height: 1.8;
+}
+
+.ProseMirror a {
+  color: var(--accent);
   text-decoration: underline;
+  cursor: pointer;
 }
 
-.prose a:hover {
+.ProseMirror a:hover {
   opacity: 0.8;
 }
 
-.prose ul,
-.prose ol {
-  margin: 1em 0;
-  padding-left: 1.5em;
-}
-
-.prose li {
-  margin: 0.5em 0;
-}
-
-.prose img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
-  margin: 1.5em 0;
-}
-
-.prose table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5em 0;
-}
-
-.prose th,
-.prose td {
-  border: 1px solid var(--border);
-  padding: 0.5em;
-}
-
-.prose th {
-  background: var(--bg-secondary);
-  font-weight: 600;
-}
-
-.prose hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 2em 0;
-}
-
-/* Rich Text Editor Styles */
-.rich-text-editor {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-.rich-text-editor:empty:before {
-  content: attr(data-placeholder);
-  color: var(--text-dim);
-  pointer-events: none;
-}
-
-.rich-text-editor h1 {
-  font-size: 2em;
-  font-weight: 600;
-  margin: 0.5em 0;
-}
-
-.rich-text-editor h2 {
-  font-size: 1.5em;
-  font-weight: 600;
-  margin: 0.5em 0;
-}
-
-.rich-text-editor h3 {
-  font-size: 1.25em;
-  font-weight: 600;
-  margin: 0.5em 0;
-}
-
-.rich-text-editor strong {
-  font-weight: 600;
-}
-
-.rich-text-editor em {
-  font-style: italic;
-}
-
-.rich-text-editor code {
-  background: var(--card);
-  padding: 0.125em 0.375em;
+.ProseMirror code {
+  background: var(--foreground-border);
+  padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
-  font-family: monospace;
+  font-family: var(--font-geist-mono);
+  font-size: 0.875em;
 }
 
-.rich-text-editor pre {
-  background: var(--card);
-  padding: 1em;
+.ProseMirror pre {
+  background: var(--foreground-border);
+  padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
+  margin: 1rem 0;
+  line-height: 1.6;
 }
 
-.rich-text-editor blockquote {
-  border-left: 4px solid var(--primary);
-  padding-left: 1em;
-  margin: 0.5em 0;
-  color: var(--text-dim);
+.ProseMirror pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: var(--foreground-muted);
+}
+
+.ProseMirror strong {
+  font-weight: 700;
+}
+
+.ProseMirror em {
   font-style: italic;
 }
 
-.rich-text-editor ul,
-.rich-text-editor ol {
-  margin: 0.5em 0;
-  padding-left: 1.5em;
+.ProseMirror u {
+  text-decoration: underline;
 }
 
-.rich-text-editor a {
-  color: var(--primary);
+.ProseMirror s {
+  text-decoration: line-through;
+}
+
+/* Post Content Rendering Styles - For displayed posts */
+.post-content {
+  font-family: var(--font-geist-sans);
+}
+
+.post-content p {
+  margin: 1.5rem 0;
+  line-height: 1.8;
+}
+
+.post-content p:first-child {
+  margin-top: 0;
+}
+
+.post-content p:last-child {
+  margin-bottom: 0;
+}
+
+.post-content br {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  color: var(--foreground);
+}
+
+.post-content h1:first-child,
+.post-content h2:first-child,
+.post-content h3:first-child {
+  margin-top: 0;
+}
+
+.post-content h1 {
+  font-size: 2rem;
+  margin-top: 2.5rem;
+}
+
+.post-content h1:first-child {
+  margin-top: 0;
+}
+
+.post-content h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+.post-content h3 {
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.post-content ul,
+.post-content ol {
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  line-height: 1.8;
+}
+
+.post-content ul li,
+.post-content ol li {
+  margin: 0.75rem 0;
+  line-height: 1.8;
+}
+
+.post-content ul li:first-child,
+.post-content ol li:first-child {
+  margin-top: 0.5rem;
+}
+
+.post-content ul li:last-child,
+.post-content ol li:last-child {
+  margin-bottom: 0.5rem;
+}
+
+.post-content a {
+  color: var(--accent);
   text-decoration: underline;
+  cursor: pointer;
+}
+
+.post-content a:hover {
+  opacity: 0.8;
+}
+
+.post-content code {
+  background: var(--foreground-border);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-geist-mono);
+  font-size: 0.875em;
+}
+
+.post-content pre {
+  background: var(--foreground-border);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  line-height: 1.6;
+}
+
+.post-content pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.post-content blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--foreground-muted);
+}
+
+.post-content strong {
+  font-weight: 700;
+}
+
+.post-content em {
+  font-style: italic;
+}
+
+.post-content u {
+  text-decoration: underline;
+}
+
+.post-content s {
+  text-decoration: line-through;
+}
+
+/* Ensure proper spacing after headings */
+.post-content h1 + p,
+.post-content h2 + p,
+.post-content h3 + p {
+  margin-top: 1rem;
+}
+
+/* Ensure proper spacing after lists */
+.post-content ul + p,
+.post-content ol + p {
+  margin-top: 1.5rem;
+}
+
+.post-content p + ul,
+.post-content p + ol {
+  margin-top: 1rem;
+}
+
+/* Ensure proper spacing after code blocks */
+.post-content pre + p {
+  margin-top: 1.5rem;
+}
+
+.post-content p + pre {
+  margin-top: 1.5rem;
 }
