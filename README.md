@@ -59,9 +59,7 @@ prime-trade-assignment/
 │   │   └── config/        # Database config
 │   └── logs/              # Access & error logs
 ├── screenshots/           # UI screenshots
-├── postman/               # Postman collection & results
-├── API_DOCUMENTATION.md   # Complete API docs
-└── SCALING_NOTES.md       # Production scaling guide
+└── postman/               # Postman collection & results
 ```
 
 ## 🚀 Quick Start
@@ -105,8 +103,6 @@ Frontend runs on `http://localhost:3000`
 
 ## 📚 API Documentation
 
-Complete API documentation: [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)
-
 ### Endpoints Overview
 
 **Authentication**
@@ -144,7 +140,7 @@ The application includes comprehensive logging:
 - **Error Logs**: `server/logs/error-YYYY-MM-DD.log`
   - Timestamp, request details, error message, stack trace
 
-Logs are automatically generated when the server is running. See [GENERATE_LOGS.md](./GENERATE_LOGS.md) for details.
+Logs are automatically generated when the server is running. Access logs track all HTTP requests, while error logs capture exceptions and stack traces.
 
 ## 🧪 Testing
 
@@ -163,8 +159,6 @@ Logs are automatically generated when the server is running. See [GENERATE_LOGS.
 4. Export results to `postman/run-report-YYYY-MM-DD.json`
 
 ## 🚀 Production Deployment
-
-For production deployment strategies, see [SCALING_NOTES.md](./SCALING_NOTES.md)
 
 **Key Considerations:**
 - Environment variables for secrets
@@ -196,8 +190,8 @@ For production deployment strategies, see [SCALING_NOTES.md](./SCALING_NOTES.md)
 - ✅ Functional authentication (register/login/logout with JWT)
 - ✅ Dashboard with CRUD-enabled posts
 - ✅ Postman collection (`Postman_Collection.json`)
-- ✅ API documentation (`API_DOCUMENTATION.md`)
-- ✅ Scaling notes (`SCALING_NOTES.md`)
+- ✅ Complete API documentation (included in README)
+- ✅ Production scaling considerations (included in README)
 - ✅ Log files (`server/logs/`)
 - ✅ Screenshots (`screenshots/`)
 
