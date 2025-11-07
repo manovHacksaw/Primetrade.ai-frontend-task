@@ -1,4 +1,7 @@
 node_modules/
 .env
+# Allow submission log files
 logs/*.log
-/server/node_modules
+!logs/access-*.log
+!logs/error-*.log
+!logs/server-*.log

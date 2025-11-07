@@ -1,0 +1,11 @@
+[2025-11-07T12:38:20.385Z] ERROR
+Method: POST
+Path: /auth/login
+IP: ::1
+Message: Invalid credentials
+Stack Trace:
+Error: Invalid credentials
+    at POST /auth/login (server/src/routes/auth.js:71:15)
+    at asyncHandler (server/src/middleware/asyncHandler.js:5:12)
+================================================================================
+
