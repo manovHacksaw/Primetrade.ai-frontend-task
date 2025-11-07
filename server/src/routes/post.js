@@ -47,6 +47,31 @@ router.get("/", auth, async (req, res) => {
 });
 
 /**
+ * GET /posts/:id
+ * 
+ * Retrieves a single post by ID.
+ * Only allows viewing posts that belong to the authenticated user.
+ * 
+ * Requires: Authentication token in Authorization header
+ * URL params:
+ *   - id: Post ID to retrieve
+ * 
+ * Response: Post object
+ */
+router.get("/:id", auth, async (req, res) => {
+  try {
+    // Find post that belongs to authenticated user
+    const post = await Post.findOne({ _id: req.params.id, user: req.user });
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+    return res.json(post);
+  } catch (err) {
+    return res.status(500).json({ message: "Server error" });
+  }
+});
+
+/**
  * PUT /posts/:id
  * 
  * Updates an existing post.
