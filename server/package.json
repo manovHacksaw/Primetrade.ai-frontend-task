@@ -15,7 +15,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js",
-    "log": "node src/server.js 2>&1 | tee -a logs/server-$(date +%F).log"
+    "log": "node src/server.js 2>&1 | tee -a logs/server-$(date +%F).log",
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",
