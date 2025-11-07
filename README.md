@@ -1,267 +1,212 @@
 # Primetrade.ai Frontend Developer Assignment
 
-A full-stack web application built with Next.js (frontend) and Node.js/Express (backend) featuring authentication, dashboard, and CRUD operations for blog posts.
+A full-stack web application built with Next.js and Node.js/Express featuring JWT authentication, dashboard, and CRUD operations for blog posts.
 
-## 🚀 Features
+**Repository**: [https://github.com/manovHacksaw/Primetrade.ai-frontend-task](https://github.com/manovHacksaw/Primetrade.ai-frontend-task)
+
+## 📸 Screenshots
+
+| Login | Signup | Dashboard |
+|-------|--------|-----------|
+| ![Login](./screenshots/login.png) | ![Signup](./screenshots/signup.png) | ![Dashboard](./screenshots/dashboard.png) |
+
+| Posts List | Post View | Create Post | Settings |
+|------------|-----------|-------------|----------|
+| ![Posts](./screenshots/posts-list.png) | ![Post View](./screenshots/post-view.png) | ![Create](./screenshots/post-create.png) | ![Settings](./screenshots/settings.png) |
+
+## ✨ Features
 
 ### Frontend
-- ✅ **Next.js 16** with React 19 and TypeScript
-- ✅ **Responsive Design** using TailwindCSS with custom CSS variables
-- ✅ **Dark/Light Theme** support with theme switcher
-- ✅ **Form Validation** (client-side and server-side)
-- ✅ **Protected Routes** (login required for dashboard and posts)
-- ✅ **Rich Text Editor** for post content (TipTap)
-- ✅ **Search & Filter** functionality for posts
-- ✅ **Smooth Animations** using Framer Motion
+- **Next.js 16** with React 19 and TypeScript
+- **Responsive Design** using TailwindCSS
+- **Dark/Light Theme** support with system detection
+- **Form Validation** (client-side and server-side)
+- **Protected Routes** with authentication checks
+- **Rich Text Editor** (TipTap) for post content
+- **Search & Filter** functionality
+- **Smooth Animations** with Framer Motion
 
 ### Backend
-- ✅ **Node.js/Express** REST API
-- ✅ **MongoDB** database with Mongoose ODM
-- ✅ **JWT Authentication** with secure token management
-- ✅ **Password Hashing** using bcrypt
-- ✅ **Protected API Routes** with authentication middleware
-- ✅ **Error Handling** and validation
+- **Node.js/Express** REST API
+- **MongoDB** with Mongoose ODM
+- **JWT Authentication** with secure token management
+- **Password Hashing** using bcrypt (10 rounds)
+- **Protected API Routes** with middleware
+- **Comprehensive Error Handling** and validation
+- **Request Logging** to track all API calls
 
 ### Core Functionality
 - ✅ User registration and login
-- ✅ User profile management (username and password update)
-- ✅ CRUD operations for posts (Create, Read, Update, Delete)
-- ✅ Dashboard with user stats and recent posts
-- ✅ Search and filter posts by title/content
-- ✅ Logout functionality
+- ✅ User profile management (username/password update)
+- ✅ Full CRUD operations for posts
+- ✅ Dashboard with statistics and recent posts
+- ✅ Real-time search and filtering
+- ✅ Secure logout functionality
 
-## 📁 Project Structure
+## 🏗️ Project Structure
 
 ```
 prime-trade-assignment/
-├── client/                 # Next.js frontend application
-│   ├── app/                # Next.js app router pages
-│   │   ├── dashboard/      # Dashboard page
-│   │   ├── posts/          # Posts listing page
-│   │   ├── post/           # Post detail, create, edit pages
-│   │   ├── login/          # Login page
-│   │   ├── signup/         # Signup page
-│   │   └── settings/       # User settings page
-│   ├── components/         # React components
-│   └── lib/                # Utility functions (auth, axios)
-├── server/                 # Express backend application
-│   └── src/
-│       ├── routes/         # API route handlers
-│       ├── models/         # MongoDB models
-│       ├── middleware/     # Authentication middleware
-│       └── config/         # Database configuration
-├── API_DOCUMENTATION.md    # Complete API documentation
-└── SCALING_NOTES.md        # Production scaling strategies
+├── client/                 # Next.js frontend
+│   ├── app/               # App router pages
+│   ├── components/        # React components
+│   └── lib/               # Utilities (auth, axios)
+├── server/                # Express backend
+│   ├── src/
+│   │   ├── routes/        # API endpoints
+│   │   ├── models/        # MongoDB models
+│   │   ├── middleware/    # Auth & logging middleware
+│   │   └── config/        # Database config
+│   └── logs/              # Access & error logs
+├── screenshots/           # UI screenshots
+├── postman/               # Postman collection & results
+├── API_DOCUMENTATION.md   # Complete API docs
+└── SCALING_NOTES.md       # Production scaling guide
 ```
 
-## 🛠️ Setup Instructions
+## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- MongoDB (local or MongoDB Atlas)
+- Node.js (v18+)
+- MongoDB (local or Atlas)
 - npm or yarn
 
 ### Backend Setup
 
-1. Navigate to server directory:
 ```bash
 cd server
-```
-
-2. Install dependencies:
-```bash
 npm install
-```
 
-3. Create a `.env` file in the `server` directory:
-```env
+# Create .env file
+cat > .env << EOF
 MONGO_URI=mongodb://localhost:27017/primetrade
-JWT_SECRET=your-secret-key-here-change-in-production
+JWT_SECRET=your-secret-key-here
 PORT=5000
-```
+EOF
 
-4. Start the backend server:
-```bash
 npm run dev
 ```
 
-The backend will run on `http://localhost:5000`
+Backend runs on `http://localhost:5000`
 
 ### Frontend Setup
 
-1. Navigate to client directory:
 ```bash
 cd client
-```
-
-2. Install dependencies:
-```bash
 npm install
-```
 
-3. Create a `.env.local` file in the `client` directory:
-```env
-NEXT_PUBLIC_API_URL=http://localhost:5000
-```
+# Create .env.local file
+echo "NEXT_PUBLIC_API_URL=http://localhost:5000" > .env.local
 
-4. Start the development server:
-```bash
 npm run dev
 ```
 
-The frontend will run on `http://localhost:3000`
+Frontend runs on `http://localhost:3000`
 
 ## 📚 API Documentation
 
-Complete API documentation is available in [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)
+Complete API documentation: [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)
 
-### Quick API Overview
+### Endpoints Overview
 
-**Authentication:**
+**Authentication**
 - `POST /auth/register` - Register new user
 - `POST /auth/login` - Login user
 - `GET /auth/me` - Get current user (protected)
 
-**Posts:**
+**Posts**
 - `GET /posts` - Get all user's posts (protected)
 - `GET /posts/:id` - Get single post (protected)
-- `POST /posts` - Create new post (protected)
+- `POST /posts` - Create post (protected)
 - `PUT /posts/:id` - Update post (protected)
 - `DELETE /posts/:id` - Delete post (protected)
 
-**User:**
+**User**
 - `PATCH /user/username` - Update username (protected)
 - `PATCH /user/password` - Update password (protected)
 
-## 🔒 Security Features
+## 🔒 Security
 
-- **Password Hashing**: Passwords are hashed using bcrypt (10 rounds)
-- **JWT Authentication**: Secure token-based authentication
-- **Protected Routes**: Both frontend and backend route protection
-- **Input Validation**: Client-side and server-side validation
-- **CORS**: Configured for cross-origin requests
-- **Error Handling**: Comprehensive error handling and user feedback
-
-## 🎨 UI/UX Features
-
-- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile
-- **Dark/Light Theme**: User preference with system detection
-- **Smooth Animations**: Framer Motion for enhanced user experience
-- **Loading States**: Skeleton loaders and loading indicators
-- **Error Messages**: Clear and user-friendly error messages
-- **Form Validation**: Real-time validation with helpful error messages
-
-## 📊 Dashboard Features
-
-- User welcome message with username
-- Statistics cards (Total Posts, Updated This Week)
-- Recent posts list (last 5 posts)
-- Quick actions (Create Post, View All Posts)
-
-## 🔍 Search & Filter
-
-- Real-time search across post titles and content
-- Case-insensitive search
-- Instant filtering as you type
-
-## 📝 Post Management
-
-- Create posts with rich text editor
-- Edit existing posts
-- Delete posts with confirmation
-- View individual post details
-- All posts are user-specific (users can only see/edit their own posts)
-
-## 🚀 Production Deployment
-
-For production deployment considerations and scaling strategies, see [SCALING_NOTES.md](./SCALING_NOTES.md)
-
-### Key Production Considerations:
-- Environment variables for sensitive data
-- HTTPS enforcement
-- Rate limiting
-- Database indexing
-- Caching strategies (Redis)
-- CDN for static assets
-- Monitoring and logging
-- Horizontal scaling
+- **Password Hashing**: bcrypt with 10 salt rounds
+- **JWT Tokens**: Secure token-based authentication
+- **Route Protection**: Frontend and backend route guards
+- **Input Validation**: Client and server-side validation
+- **CORS**: Configured for secure cross-origin requests
+- **Error Handling**: Comprehensive error management
 
 ## 📋 Logging
 
 The application includes comprehensive logging:
 
-### Log Files
+- **Access Logs**: `server/logs/access-YYYY-MM-DD.log`
+  - Timestamp, HTTP method, route, status code, response time
+  
+- **Error Logs**: `server/logs/error-YYYY-MM-DD.log`
+  - Timestamp, request details, error message, stack trace
 
-Logs are stored in `server/logs/` directory:
-
-- **Access Logs**: `access-YYYY-MM-DD.log` - Contains all HTTP requests with:
-  - Timestamp
-  - HTTP method
-  - Route path
-  - Status code
-  - Response time (ms)
-
-- **Error Logs**: `error-YYYY-MM-DD.log` - Contains errors with:
-  - Timestamp
-  - Request details (method, path, IP)
-  - Error message
-  - Stack trace
-
-- **Server Logs**: `server-YYYY-MM-DD.log` - Server console output (when using `npm run log`)
-
-### Generating Logs
-
-1. Start the server: `cd server && npm run dev`
-2. Perform actions through the UI or API
-3. Check `server/logs/` for generated log files
-
-For detailed instructions, see [GENERATE_LOGS.md](./GENERATE_LOGS.md)
+Logs are automatically generated when the server is running. See [GENERATE_LOGS.md](./GENERATE_LOGS.md) for details.
 
 ## 🧪 Testing
 
-To test the application:
-
-1. Start both backend and frontend servers
+### Manual Testing
+1. Start both servers (backend + frontend)
 2. Navigate to `http://localhost:3000`
 3. Register a new account
-4. Create, edit, and delete posts
-5. Test search functionality
+4. Test all CRUD operations
+5. Test search and filtering
 6. Update profile settings
 
-### Testing with Postman
-
+### Postman Collection
 1. Import `Postman_Collection.json` into Postman
-2. Set environment variable `base_url` to `http://localhost:5000`
+2. Set `base_url` environment variable to `http://localhost:5000`
 3. Run the collection to test all endpoints
-4. Export run results to `postman/run-report-YYYY-MM-DD.json`
+4. Export results to `postman/run-report-YYYY-MM-DD.json`
 
-## 📦 Dependencies
+## 🚀 Production Deployment
 
-### Frontend
-- Next.js 16
-- React 19
-- TypeScript
-- TailwindCSS
-- Framer Motion
+For production deployment strategies, see [SCALING_NOTES.md](./SCALING_NOTES.md)
+
+**Key Considerations:**
+- Environment variables for secrets
+- HTTPS enforcement
+- Rate limiting
+- Database indexing
+- Redis caching
+- CDN for static assets
+- Monitoring and logging
+- Horizontal scaling
+
+## 📦 Tech Stack
+
+**Frontend**
+- Next.js 16, React 19, TypeScript
+- TailwindCSS, Framer Motion
 - TipTap (Rich Text Editor)
 - Axios
 
-### Backend
-- Express.js
-- MongoDB/Mongoose
-- JWT
-- bcrypt
-- CORS
-- dotenv
+**Backend**
+- Node.js, Express.js
+- MongoDB, Mongoose
+- JWT, bcrypt
+- CORS, dotenv
 
-## 📄 License
+## 📄 Deliverables
 
-This project is part of a coding assignment for Primetrade.ai.
+- ✅ Frontend (Next.js) + Backend (Node.js/Express)
+- ✅ Functional authentication (register/login/logout with JWT)
+- ✅ Dashboard with CRUD-enabled posts
+- ✅ Postman collection (`Postman_Collection.json`)
+- ✅ API documentation (`API_DOCUMENTATION.md`)
+- ✅ Scaling notes (`SCALING_NOTES.md`)
+- ✅ Log files (`server/logs/`)
+- ✅ Screenshots (`screenshots/`)
 
 ## 👤 Author
 
-Frontend Developer Intern Candidate
+**Manobendra Mandal**
+
+GitHub: [@manovHacksaw](https://github.com/manovHacksaw)
 
 ---
 
-**Note**: This is a demonstration project built for the Primetrade.ai Frontend Developer Intern position. All features required by the assignment have been implemented with attention to code quality, security, and scalability.
+**Note**: This project was built for the Primetrade.ai Frontend Developer Intern position. All required features have been implemented with attention to code quality, security, and scalability.
