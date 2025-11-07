@@ -186,6 +186,37 @@ For production deployment considerations and scaling strategies, see [SCALING_NO
 - Monitoring and logging
 - Horizontal scaling
 
+## 📋 Logging
+
+The application includes comprehensive logging:
+
+### Log Files
+
+Logs are stored in `server/logs/` directory:
+
+- **Access Logs**: `access-YYYY-MM-DD.log` - Contains all HTTP requests with:
+  - Timestamp
+  - HTTP method
+  - Route path
+  - Status code
+  - Response time (ms)
+
+- **Error Logs**: `error-YYYY-MM-DD.log` - Contains errors with:
+  - Timestamp
+  - Request details (method, path, IP)
+  - Error message
+  - Stack trace
+
+- **Server Logs**: `server-YYYY-MM-DD.log` - Server console output (when using `npm run log`)
+
+### Generating Logs
+
+1. Start the server: `cd server && npm run dev`
+2. Perform actions through the UI or API
+3. Check `server/logs/` for generated log files
+
+For detailed instructions, see [GENERATE_LOGS.md](./GENERATE_LOGS.md)
+
 ## 🧪 Testing
 
 To test the application:
@@ -196,6 +227,13 @@ To test the application:
 4. Create, edit, and delete posts
 5. Test search functionality
 6. Update profile settings
+
+### Testing with Postman
+
+1. Import `Postman_Collection.json` into Postman
+2. Set environment variable `base_url` to `http://localhost:5000`
+3. Run the collection to test all endpoints
+4. Export run results to `postman/run-report-YYYY-MM-DD.json`
 
 ## 📦 Dependencies
 

@@ -1,362 +1,59 @@
 {
 	"info": {
-		"_postman_id": "primetrade-api-collection",
-		"name": "Primetrade.ai API Collection",
-		"description": "API collection for Primetrade.ai Frontend Developer Assignment",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "bd49d65d-6568-4d8f-9500-e8e5ddd78c85",
+		"name": "Primetrade.ai Frontend Intern Task",
+		"description": "This Postman collection contains all API endpoints for the **Frontend Developer Assignment Web App**, which includes user authentication and CRUD operations for posts.\n\n#### **Base URL**\n\n``` bash\nhttp://localhost:5000\n\n ```\n\n#### **Authentication**\n\nThe API uses **JWT (Bearer Token)** authentication.\n\n- First, use the **Register** endpoint to create a user.\n    \n- Then use the **Login** endpoint to obtain a token.\n    \n- Add the token in the Authorization tab using **Bearer Token** format.\n    \n- The token is required for all `/posts` endpoints.\n    \n\n#### **Endpoints Overview**\n\n| Endpoint | Method | Description | Auth Required |\n| --- | --- | --- | --- |\n| `/auth/register` | POST | Create a new user account | No |\n| `/auth/login` | POST | Login an existing user and receive JWT | No |\n| `/posts` | GET | Fetch all posts created by the logged-in user | Yes |\n| `/posts` | POST | Create a new post (title + content) | Yes |\n| `/posts/:id` | PUT | Edit an existing post | Yes |\n| `/posts/:id` | DELETE | Delete an existing post | Yes |\n\n#### **Request Format**\n\nAll requests must be sent with:\n\n```\nContent-Type: application/json\n\n ```\n\n#### **Response Format**\n\nAll responses return JSON.  \n  \nErrors include a clear `message` field to help with debugging.\n\n---\n\n### **Usage Instructions**\n\n1. **Run the backend server.**\n    \n2. **Register a new user.**\n    \n3. **Login and copy the returned token.**\n    \n4. **Set the token in the Postman Authorization tab (Bearer Token).**\n    \n5. Use the Post and Get endpoints to interact with posts.\n    \n\n---",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43708081"
 	},
 	"item": [
 		{
-			"name": "Authentication",
-			"item": [
-				{
-					"name": "Register User",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"username\": \"johndoe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
-						},
-						"url": {
-							"raw": "{{base_url}}/auth/register",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"auth",
-								"register"
-							]
-						},
-						"description": "Creates a new user account"
-					},
-					"response": []
-				},
-				{
-					"name": "Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"if (pm.response.code === 200) {",
-									"    var jsonData = pm.response.json();",
-									"    pm.environment.set(\"auth_token\", jsonData.token);",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
-						},
-						"url": {
-							"raw": "{{base_url}}/auth/login",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"auth",
-								"login"
-							]
-						},
-						"description": "Authenticates a user and returns JWT token. Token is automatically saved to environment variable."
-					},
-					"response": []
-				},
-				{
-					"name": "Get Current User",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{auth_token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/auth/me",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"auth",
-								"me"
-							]
-						},
-						"description": "Returns the authenticated user's information"
-					},
-					"response": []
-				}
-			],
-			"description": "Authentication endpoints"
+			"name": "Register User",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		},
 		{
-			"name": "Posts",
-			"item": [
-				{
-					"name": "Create Post",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{auth_token}}",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"title\": \"My First Post\",\n  \"content\": \"This is the content of my post.\"\n}"
-						},
-						"url": {
-							"raw": "{{base_url}}/posts",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"posts"
-							]
-						},
-						"description": "Creates a new post for the authenticated user"
-					},
-					"response": []
-				},
-				{
-					"name": "Get All Posts",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{auth_token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/posts",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"posts"
-							]
-						},
-						"description": "Retrieves all posts belonging to the authenticated user"
-					},
-					"response": []
-				},
-				{
-					"name": "Get Single Post",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{auth_token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/posts/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"posts",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "post_id_here",
-									"description": "Post ID"
-								}
-							]
-						},
-						"description": "Retrieves a single post by ID"
-					},
-					"response": []
-				},
-				{
-					"name": "Update Post",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{auth_token}}",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"title\": \"Updated Post Title\",\n  \"content\": \"Updated content.\"\n}"
-						},
-						"url": {
-							"raw": "{{base_url}}/posts/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"posts",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "post_id_here",
-									"description": "Post ID"
-								}
-							]
-						},
-						"description": "Updates an existing post"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Post",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{auth_token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/posts/:id",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"posts",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "post_id_here",
-									"description": "Post ID"
-								}
-							]
-						},
-						"description": "Deletes a post"
-					},
-					"response": []
-				}
-			],
-			"description": "Post CRUD operations"
+			"name": "Login User",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		},
 		{
-			"name": "User",
-			"item": [
-				{
-					"name": "Update Username",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{auth_token}}",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"newUsername\": \"newusername\",\n  \"password\": \"password123\"\n}"
-						},
-						"url": {
-							"raw": "{{base_url}}/user/username",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"user",
-								"username"
-							]
-						},
-						"description": "Updates the username for the authenticated user. Requires password confirmation."
-					},
-					"response": []
-				},
-				{
-					"name": "Update Password",
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{auth_token}}",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newpassword123\"\n}"
-						},
-						"url": {
-							"raw": "{{base_url}}/user/password",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"user",
-								"password"
-							]
-						},
-						"description": "Updates the password for the authenticated user"
-					},
-					"response": []
-				}
-			],
-			"description": "User profile management endpoints"
-		}
-	],
-	"variable": [
-		{
-			"key": "base_url",
-			"value": "http://localhost:5000",
-			"type": "string"
+			"name": "Create Post",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		},
 		{
-			"key": "auth_token",
-			"value": "",
-			"type": "string"
+			"name": "Get Posts",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update Post",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Post",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
-
