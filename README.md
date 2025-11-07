@@ -4,6 +4,8 @@ A full-stack web application built with Next.js and Node.js/Express featuring JW
 
 **Repository**: [https://github.com/manovHacksaw/Primetrade.ai-frontend-task](https://github.com/manovHacksaw/Primetrade.ai-frontend-task)
 
+**Live Demo**: [https://primetradeai-frontend-task-production.up.railway.app/](https://primetradeai-frontend-task-production.up.railway.app/)
+
 ## 📸 Screenshots
 
 | Login | Signup | Dashboard |
@@ -159,6 +161,14 @@ Logs are automatically generated when the server is running. Access logs track a
 4. Export results to `postman/run-report-YYYY-MM-DD.json`
 
 ## 🚀 Production Deployment
+
+**Live Application**: [https://primetradeai-frontend-task-production.up.railway.app/](https://primetradeai-frontend-task-production.up.railway.app/)
+
+Deployed on Railway with the following setup:
+- Frontend: Next.js application
+- Backend: Node.js/Express API
+- Database: MongoDB Atlas
+- Environment variables configured for production
 
 **Key Considerations:**
 - Environment variables for secrets
