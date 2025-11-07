@@ -4,7 +4,9 @@ A full-stack web application built with Next.js and Node.js/Express featuring JW
 
 **Repository**: [https://github.com/manovHacksaw/Primetrade.ai-frontend-task](https://github.com/manovHacksaw/Primetrade.ai-frontend-task)
 
-**Live Demo**: [https://primetradeai-frontend-task-production.up.railway.app/](https://primetradeai-frontend-task-production.up.railway.app/)
+**Live Demo**: 
+- **Frontend**: [https://primetrade-ai-frontend-task.vercel.app/](https://primetrade-ai-frontend-task.vercel.app/) (Vercel)
+- **Backend API**: [https://primetradeai-frontend-task-production.up.railway.app/](https://primetradeai-frontend-task-production.up.railway.app/) (Railway)
 
 ## 📸 Screenshots
 
@@ -162,13 +164,15 @@ Logs are automatically generated when the server is running. Access logs track a
 
 ## 🚀 Production Deployment
 
-**Live Application**: [https://primetradeai-frontend-task-production.up.railway.app/](https://primetradeai-frontend-task-production.up.railway.app/)
+**Live Application**: 
+- **Frontend**: [https://primetrade-ai-frontend-task.vercel.app/](https://primetrade-ai-frontend-task.vercel.app/) (Vercel)
+- **Backend API**: [https://primetradeai-frontend-task-production.up.railway.app/](https://primetradeai-frontend-task-production.up.railway.app/) (Railway)
 
-Deployed on Railway with the following setup:
-- Frontend: Next.js application
-- Backend: Node.js/Express API
-- Database: MongoDB Atlas
-- Environment variables configured for production
+**Deployment Setup:**
+- **Frontend**: Next.js application deployed on Vercel
+- **Backend**: Node.js/Express API deployed on Railway
+- **Database**: MongoDB Atlas (cloud-hosted)
+- **Environment Variables**: Configured for production on both platforms
 
 **Key Considerations:**
 - Environment variables for secrets
