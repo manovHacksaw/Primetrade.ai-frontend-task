@@ -56,7 +56,20 @@ export default function SignupPage() {
       setToken(loginResponse.data.token);
       router.push('/dashboard');
     } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Signup failed. Please try again.';
+      // Show actual server error message
+      let errorMessage = 'Signup failed. Please try again.';
+      
+      if (error.response) {
+        // Server responded with error
+        errorMessage = error.response.data?.message || error.response.statusText || 'Server error occurred';
+      } else if (error.request) {
+        // Request was made but no response received
+        errorMessage = 'Unable to connect to server. Please check your connection.';
+      } else {
+        // Something else happened
+        errorMessage = error.message || 'An unexpected error occurred';
+      }
+      
       setErrors({
         password: errorMessage,
       });

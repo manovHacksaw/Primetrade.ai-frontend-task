@@ -86,8 +86,14 @@ export const errorHandler = (err, req, res, next) => {
     return next(err);
   }
   
+  // In development, show detailed error messages
+  // In production, show generic message for 500 errors, but specific messages for client errors (4xx)
+  const errorMessage = process.env.NODE_ENV === "production" && statusCode === 500
+    ? "Server error. Please try again later."
+    : message;
+  
   res.status(statusCode).json({
-    message: process.env.NODE_ENV === "production" && statusCode === 500 ? "Server error" : message,
+    message: errorMessage,
   });
 };
 

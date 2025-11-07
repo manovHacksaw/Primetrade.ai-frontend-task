@@ -44,7 +44,11 @@ router.post("/register", async (req, res) => {
     const user = await User.create({ username, email, password: hashed });
     return res.json({ message: "User registered", user });
   } catch (err) {
-    return res.status(500).json({ message: "Server error" });
+    console.error("Registration error:", err);
+    const errorMessage = process.env.NODE_ENV === "production" 
+      ? "Server error. Please try again later." 
+      : err.message || "Server error";
+    return res.status(500).json({ message: errorMessage });
   }
 });
 
@@ -79,7 +83,11 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     return res.json({ token });
   } catch (err) {
-    return res.status(500).json({ message: "Server error" });
+    console.error("Login error:", err);
+    const errorMessage = process.env.NODE_ENV === "production" 
+      ? "Server error. Please try again later." 
+      : err.message || "Server error";
+    return res.status(500).json({ message: errorMessage });
   }
 });
 
@@ -101,7 +109,11 @@ router.get("/me", auth, async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
     return res.json(user);
   } catch (err) {
-    return res.status(500).json({ message: "Server error" });
+    console.error("Get user error:", err);
+    const errorMessage = process.env.NODE_ENV === "production" 
+      ? "Server error. Please try again later." 
+      : err.message || "Server error";
+    return res.status(500).json({ message: errorMessage });
   }
 });
 
