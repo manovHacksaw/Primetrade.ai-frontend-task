@@ -112,13 +112,14 @@ export default function Navbar() {
           {/* Right Side - Time, Theme Switcher, Logout, Mobile Menu */}
           <div className="flex items-center justify-center gap-2 sm:gap-4">
             {/* Time - Hidden on small screens */}
-            <div className="hidden sm:flex items-center gap-2">
+            <div className="hidden sm:flex items-center gap-2 mt-2">
               <motion.div
                 style={{
                   width: '0.5rem',
                   height: '0.5rem',
                   borderRadius: '50%',
                   backgroundColor: 'var(--accent-green)',
+                  marginBottom: '0.28rem',
                 }}
                 animate={{ opacity: [1, 0.5, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}

@@ -45,8 +45,9 @@ export default function LoginPage() {
       setToken(response.data.token);
       router.push('/dashboard');
     } catch (error: any) {
+      const errorMessage = error.response?.data?.message || 'Login failed. Please check your credentials.';
       setErrors({
-        general: error.response?.data?.message || 'Login failed. Please check your credentials.',
+        password: errorMessage,
       });
     } finally {
       setIsSubmitting(false);
@@ -74,29 +75,6 @@ export default function LoginPage() {
               Sign in to manage your posts and content. Create, edit, and organize your blog posts effortlessly.
             </p>
           </motion.div>
-
-          {/* Error Message */}
-          <AnimatePresence>
-            {errors.general && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                style={{
-                  padding: '0.75rem',
-                  backgroundColor: 'var(--background)',
-                  border: '1px solid #ef4444',
-                  borderRadius: '0.5rem',
-                  color: '#ef4444',
-                  fontSize: '0.75rem',
-                  textAlign: 'center',
-                }}
-                className="sm:text-sm"
-              >
-                {errors.general}
-              </motion.div>
-            )}
-          </AnimatePresence>
 
           {/* Form */}
           <motion.form
@@ -148,7 +126,7 @@ export default function LoginPage() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    style={{ marginTop: '0.25rem', fontSize: '0.75rem', color: '#ef4444', textAlign: 'center' }}
+                    style={{ marginTop: '0.5rem', fontSize: '0.75rem', color: '#ef4444', fontWeight: 400 }}
                     className="sm:text-sm"
                   >
                     {errors.email}
@@ -174,7 +152,7 @@ export default function LoginPage() {
                   padding: '0.75rem 1rem',
                   paddingRight: '2.5rem',
                   backgroundColor: 'var(--background)',
-                  border: `1px solid ${errors.password ? '#ef4444' : 'var(--foreground-border)'}`,
+                  border: `1px solid ${(errors.password || errors.general) ? '#ef4444' : 'var(--foreground-border)'}`,
                   borderRadius: '0.5rem',
                   outline: 'none',
                   color: 'var(--foreground)',
@@ -182,13 +160,13 @@ export default function LoginPage() {
                   transition: 'all 0.2s',
                 }}
                 onFocus={(e) => {
-                  if (!errors.password) {
+                  if (!errors.password && !errors.general) {
                     e.currentTarget.style.borderColor = 'var(--accent)';
                     e.currentTarget.style.boxShadow = `0 0 0 2px var(--accent)33`;
                   }
                 }}
                 onBlur={(e) => {
-                  if (!errors.password) {
+                  if (!errors.password && !errors.general) {
                     e.currentTarget.style.borderColor = 'var(--foreground-border)';
                     e.currentTarget.style.boxShadow = 'none';
                   }
@@ -248,15 +226,15 @@ export default function LoginPage() {
                 </svg>
               </button>
               <AnimatePresence>
-                {errors.password && (
+                {(errors.password || errors.general) && (
                   <motion.p
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    style={{ marginTop: '0.25rem', fontSize: '0.75rem', color: '#ef4444', textAlign: 'center' }}
+                    style={{ marginTop: '0.5rem', fontSize: '0.75rem', color: '#ef4444', fontWeight: 400 }}
                     className="sm:text-sm"
                   >
-                    {errors.password}
+                    {errors.password || errors.general}
                   </motion.p>
                 )}
               </AnimatePresence>

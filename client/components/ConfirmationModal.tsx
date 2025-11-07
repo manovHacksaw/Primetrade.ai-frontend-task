@@ -34,22 +34,22 @@ export default function ConfirmationModal({
   return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            style={{
-              position: 'fixed',
-              inset: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.7)',
-              backdropFilter: 'blur(4px)',
-              zIndex: 99998,
-            }}
-          />
-          
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            backdropFilter: 'blur(4px)',
+            zIndex: 99998,
+          }}
+        >
           {/* Modal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -57,16 +57,12 @@ export default function ConfirmationModal({
             exit={{ opacity: 0, scale: 0.95 }}
             onClick={(e) => e.stopPropagation()}
             style={{
-              position: 'fixed',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
               backgroundColor: 'var(--background)',
+              border: '1px solid var(--foreground-border)',
               borderRadius: '0.5rem',
               padding: '2rem',
               maxWidth: '420px',
               width: '90%',
-              zIndex: 99999,
             }}
           >
             {/* Title */}
@@ -144,7 +140,7 @@ export default function ConfirmationModal({
               </button>
             </div>
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>,
     document.body

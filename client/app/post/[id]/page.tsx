@@ -143,37 +143,37 @@ export default function PostDetailPage() {
   return (
     <DashboardLayout>
       <div style={{ maxWidth: '48rem', margin: '0 auto', padding: '3rem 1.5rem' }}>
-        {/* Back Navigation */}
-        <div style={{ marginBottom: '2.5rem' }}>
+        {/* Back link - subtle and small */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          style={{ marginBottom: '2rem' }}
+        >
           <Link
             href="/posts"
             style={{
-              fontSize: '0.9375rem',
+              fontSize: '0.875rem',
               color: 'var(--foreground-muted)',
-              transition: 'all 0.2s',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              textDecoration: 'none',
+              transition: 'color 0.2s',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = 'var(--foreground)';
-              e.currentTarget.style.transform = 'translateX(-4px)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.color = 'var(--foreground-muted)';
-              e.currentTarget.style.transform = 'translateX(0)';
             }}
+            className="inline-flex items-center gap-1"
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
-              <path d="M10 12L6 8L10 4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Back to Posts
+            ← Back to Posts
           </Link>
-        </div>
+        </motion.div>
 
-        {/* Article */}
-        <article>
+        {/* Article Header */}
+        <motion.article
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+        >
           {/* Title */}
           <h1 style={{
             fontSize: 'clamp(2rem, 5vw, 3rem)',
@@ -272,7 +272,7 @@ export default function PostDetailPage() {
             }}
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
-        </article>
+        </motion.article>
       </div>
 
       {/* Enhanced Prose Styles */}
